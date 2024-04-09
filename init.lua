@@ -223,6 +223,18 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Encrypt the current file with ansible-vault
+vim.api.nvim_create_user_command('AnsibleEncrypt', function()
+  vim.cmd('!source /home/vagrant/miniconda3/etc/profile.d/conda.sh && conda activate ansible && ansible-vault encrypt ' .. vim.fn.expand '%')
+  vim.cmd 'edit!'
+end, {})
+
+-- Decrypt the current file with ansible-vault
+vim.api.nvim_create_user_command('AnsibleDecrypt', function()
+  vim.cmd('!source /home/vagrant/miniconda3/etc/profile.d/conda.sh && conda activate ansible && ansible-vault decrypt ' .. vim.fn.expand '%')
+  vim.cmd 'edit!'
+end, {})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
