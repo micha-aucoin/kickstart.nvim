@@ -105,7 +105,8 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
+vim.opt.mouse = ''
+-- vim.opt.mouse = 'a'
 
 -- Don't show the mode, since it's already in status line
 vim.opt.showmode = false
@@ -196,6 +197,8 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', 'H', '<gv')
+vim.keymap.set('v', 'L', '>gv')
 vim.keymap.set('n', 'J', 'mzJ`z')
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
@@ -761,6 +764,11 @@ require('lazy').setup({
 
       -- You can configure highlights by doing something like
       vim.cmd.hi 'Comment gui=none'
+
+      -- Remove background color
+      vim.cmd [[highlight Normal guibg=NONE ctermbg=NONE]]
+      vim.cmd [[highlight NormalNC guibg=NONE ctermbg=NONE]]
+      vim.cmd [[highlight EndOfBuffer guibg=NONE ctermbg=NONE]]
     end,
   },
   { 'folke/tokyonight.nvim' },
