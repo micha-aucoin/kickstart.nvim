@@ -226,13 +226,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- Encrypt the current file with ansible-vault
 vim.api.nvim_create_user_command('AnsibleEncrypt', function()
-  vim.cmd('!source /home/vagrant/miniconda3/etc/profile.d/conda.sh && conda activate ansible && ansible-vault encrypt ' .. vim.fn.expand '%')
+  vim.cmd('!source /home/vagrant/miniconda3/etc/profile.d/conda.sh && conda activate ansible && ansible-vault encrypt ' ..
+    vim.fn.expand '%')
   vim.cmd 'edit!'
 end, {})
 
 -- Decrypt the current file with ansible-vault
 vim.api.nvim_create_user_command('AnsibleDecrypt', function()
-  vim.cmd('!source /home/vagrant/miniconda3/etc/profile.d/conda.sh && conda activate ansible && ansible-vault decrypt ' .. vim.fn.expand '%')
+  vim.cmd('!source /home/vagrant/miniconda3/etc/profile.d/conda.sh && conda activate ansible && ansible-vault decrypt ' ..
+    vim.fn.expand '%')
   vim.cmd 'edit!'
 end, {})
 
@@ -270,7 +272,7 @@ require('lazy').setup({
   --    require('Comment').setup({})
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim',    opts = {} },
 
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following lua:
@@ -305,7 +307,7 @@ require('lazy').setup({
   -- after the plugin has been loaded:
   --  config = function() ... end
 
-  { -- Useful plugin to show you pending keybinds.
+  {                     -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     config = function() -- This is the function that runs, AFTER loading
@@ -351,7 +353,7 @@ require('lazy').setup({
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -782,6 +784,10 @@ require('lazy').setup({
       vim.cmd [[highlight Normal guibg=NONE ctermbg=NONE]]
       vim.cmd [[highlight NormalNC guibg=NONE ctermbg=NONE]]
       vim.cmd [[highlight EndOfBuffer guibg=NONE ctermbg=NONE]]
+      vim.cmd [[highlight NonText guibg=NONE ctermbg=NONE]]
+      vim.cmd [[highlight Whitespace guibg=NONE ctermbg=NONE]]
+      vim.cmd [[highlight CursorLine guibg=NONE ctermbg=NONE]]
+      vim.cmd [[highlight LineNr guibg=NONE ctermbg=NONE]]
     end,
   },
   { 'folke/tokyonight.nvim' },
